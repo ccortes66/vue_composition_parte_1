@@ -9,6 +9,7 @@
  const fin = ref(numItems)
 
  const loading = ref(true)
+ const favorito = ref(" ")
  
  const next = () => { 
      inicio.value += numItems
@@ -19,6 +20,8 @@
     inicio.value -= numItems
     fin.value -= numItems
  } 
+
+ const favoritePost = (title) => favorito.value = title
  
  onMounted(async () =>{
    try 
@@ -61,7 +64,7 @@
   
   <section v-else class="container">
     <h1>APP</h1>
-    <h2>Post favorito: </h2>
+    <h2>Post favorito: {{ favorito }}</h2>
   
     <ButtonPagination 
             class="mb-2" 
@@ -80,6 +83,7 @@
        :title="post.title"
        :body="post.body"
        :class="'mb-2'"
+       @favoritePostName="favoritePost"
        >
 
     </BlogPost>
